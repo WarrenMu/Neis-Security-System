@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.pdb
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Tooling
+.mypy_cache/
+.ruff_cache/
+.vscode/
+.idea/
+
+# Local config / secrets
+.env
+configs/*.local.*
+
+# Logs / runtime
+logs/
+*.log
+
+# Model artifacts (large)
+models/
+*.pt
+*.onnx
+
+# OS
+.DS_Store
+Thumbs.db

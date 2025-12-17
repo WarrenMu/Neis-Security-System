@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gatewatch"
+version = "0.1.0"
+description = "Gate camera vision: detect vehicles/people + license plates and send alerts."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Your Name" }]
+
+[tool.setuptools.packages.find]
+where = ["src"]

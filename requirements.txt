@@ -1,0 +1,17 @@
+# Core
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+loguru>=0.7.0
+
+# API (optional but useful for integrations / dashboards)
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+
+# Computer vision / ML (install later once basic app runs)
+opencv-python>=4.8.0
+ultralytics>=8.0.0
+# OCR (license plate text)
+easyocr>=1.7.0
+
+# HTTP notifications (webhooks)
+requests>=2.31.0

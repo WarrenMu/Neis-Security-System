@@ -1,0 +1,57 @@
+# GateWatch (Python)
+A beginner-friendly, real-world starter project for a gate/parking entrance camera system that:
+- Detects **vehicles arriving** (so reception gets notified and drivers don’t need to honk)
+- Detects **people / unknown objects** near the gate (security alert)
+- Reads **license plates** and matches them against a **whitelist**
+  - owner -> notify reception (“Owner arrived”)
+  - boss -> notify reception (“Boss arrived”)
+  - unknown -> notify reception (“Visitor arrived”)
+
+## Real-world flow (what the system does)
+1. **Camera feed**: an IP camera / USB camera provides frames.
+2. **Motion / arrival detection**: detect that “something is approaching the gate” (vehicle/person).
+3. **Object detection**:
+   - vehicle class -> triggers “vehicle arrival” event
+   - person class -> triggers “person at gate” event
+4. **Plate detection + OCR** (only when vehicle detected): crop plate region and read text.
+5. **Decision**:
+   - plate matches whitelist -> classify as `owner` / `boss`
+   - plate not in whitelist -> classify as `visitor`
+6. **Alert routing**:
+   - send a message to reception (console now, webhook later)
+   - (optional) store events to a DB / file for audit
+
+## What’s in this repo
+- `src/gatewatch/main.py`: FastAPI app + entrypoint.
+- `src/gatewatch/pipeline.py`: the “camera -> detections -> events” pipeline (stubs).
+- `src/gatewatch/notify.py`: notification sending (console/webhook stub).
+- `configs/`: example configs (whitelist, env).
+- `scripts/`: local run helpers for Windows PowerShell.
+
+## Step-by-step setup (Windows / PowerShell)
+From the project folder:
+1. Create a virtual environment
+   - `python -m venv .venv`
+2. Activate it
+   - `.\.venv\Scripts\Activate.ps1`
+3. Install dependencies
+   - `python -m pip install -U pip`
+   - `pip install -r requirements.txt`
+4. Run the API
+   - `python -m gatewatch.main`
+   - Then open: `http://127.0.0.1:8000/health`
+
+## Next upgrades (when you’re ready)
+- Replace pipeline stubs with:
+  - frame capture (OpenCV)
+  - object detection (Ultralytics YOLO)
+  - OCR (EasyOCR)
+- Add a simple storage layer (SQLite) for events.
+- Add a real notification method:
+  - WhatsApp/SMS provider, email, or a webhook to a reception dashboard.
+
+## Safety / privacy notes
+This project is only a starter scaffold. In a real deployment, consider:
+- secure storage of plate numbers
+- access control for event logs
+- camera placement and lighting for reliable OCR
