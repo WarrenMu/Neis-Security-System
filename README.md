@@ -1,4 +1,4 @@
-# GateWatch (Python){widtth=200px}
+# GateWatch (Python)
 ![LOGO](/Neis%20System.png)
 A beginner-friendly, real-world starter project for a gate/parking entrance camera system that:
 - Detects **vehicles arriving** (so reception gets notified and drivers don’t need to honk)
